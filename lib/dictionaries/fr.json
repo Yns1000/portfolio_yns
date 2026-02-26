@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "role": "Ingénieur Informatique & Industriel",
+    "description": "Création d'expériences numériques haut de gamme et optimisation des processus industriels avec précision et innovation.",
+    "cta": "Me contacter",
+    "viewWork": "Voir mes projets"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "about": {
+    "cvFr": "CV (FR)",
+    "cvEn": "CV (EN)",
+    "techStack": "Technologies & Langages",
+    "associative": "Associatif & Bénévolat",
+    "download": "Télécharger"
+  }
+}

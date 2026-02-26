@@ -1,0 +1,82 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useLenis } from "@studio-freight/react-lenis";
+import { type Dictionary } from "@/lib/dictionary";
+
+export default function HeroClient({ dict }: { dict: Dictionary }) {
+  const lenis = useLenis();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    if (lenis) {
+      lenis.scrollTo("#projects", { offset: -50 });
+    } else {
+      document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center w-full px-4 pt-16 md:pt-0 overflow-hidden">
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center -mt-16 md:mt-0"
+        style={{ maskImage: "linear-gradient(to bottom, white 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, white 60%, transparent 100%)" }}
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-foreground/5 dark:bg-primary/10 blur-[120px] rounded-full dark:mix-blend-screen" />
+        <div className="absolute top-[40%] right-[20%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-foreground/5 dark:bg-accent/10 blur-[90px] rounded-full dark:mix-blend-multiply" />
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 text-center max-w-5xl w-full"
+      >
+        <motion.span 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ delay: 0.4, duration: 1 }}
+          className="text-xs md:text-base font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4 md:mb-6 block"
+        >
+          {`${dict.hero.greeting} Yns.`}
+        </motion.span>
+        
+        <h1 
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 leading-tight md:leading-none pb-2"
+        >
+          {dict.hero.role}
+        </h1>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed font-light"
+        >
+          {dict.hero.description}
+        </motion.p>
+
+        <motion.div 
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ delay: 0.6, duration: 0.5 }}
+           whileHover={{ scale: 1.05 }}
+           whileTap={{ scale: 0.95 }}
+           className="inline-block"
+        >
+          <a 
+            href="#projects" 
+            onClick={handleScroll}
+            className="relative inline-flex items-center justify-center gap-2 px-8 py-4 md:px-10 md:py-5 rounded-full font-medium tracking-wide transition-all shadow-xl hover:shadow-2xl overflow-hidden text-sm md:text-base group"
+          >
+            <div className="absolute inset-0 bg-foreground/5 backdrop-blur-md rounded-full" />
+            <div className="absolute inset-0 border border-foreground/10 rounded-full group-hover:border-foreground/30 transition-colors duration-300" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm rounded-full" />
+            
+            <span className="relative z-10 text-foreground group-hover:text-foreground/90 transition-colors duration-300">{dict.hero.viewWork}</span>
+          </a>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}

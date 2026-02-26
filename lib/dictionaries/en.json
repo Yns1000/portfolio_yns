@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I am",
+    "role": "IT & Industrial Engineer",
+    "description": "Crafting premium digital experiences and optimizing industrial processes with precision and innovation.",
+    "cta": "Get in touch",
+    "viewWork": "View my work"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "about": {
+    "cvFr": "CV (FR)",
+    "cvEn": "CV (EN)",
+    "techStack": "Tech Stack & Languages",
+    "associative": "Associative",
+    "download": "Download"
+  }
+}
