@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useLenis } from "@studio-freight/react-lenis";
 import { type Dictionary } from "@/lib/dictionary";
+import { ArrowDown } from "lucide-react";
 
 export default function HeroClient({ dict }: { dict: Dictionary }) {
   const lenis = useLenis();
@@ -57,8 +58,8 @@ export default function HeroClient({ dict }: { dict: Dictionary }) {
         </motion.p>
 
         <motion.div 
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
            transition={{ delay: 0.6, duration: 0.5 }}
            whileHover={{ scale: 1.05 }}
            whileTap={{ scale: 0.95 }}
@@ -67,13 +68,17 @@ export default function HeroClient({ dict }: { dict: Dictionary }) {
           <a 
             href="#projects" 
             onClick={handleScroll}
-            className="relative inline-flex items-center justify-center gap-2 px-8 py-4 md:px-10 md:py-5 rounded-full font-medium tracking-wide transition-all shadow-xl hover:shadow-2xl overflow-hidden text-sm md:text-base group"
+            className="group relative inline-flex items-center justify-center gap-2 md:gap-3 px-8 py-4 md:px-10 md:py-4 rounded-full font-medium tracking-wide transition-all duration-300 text-sm md:text-base cursor-pointer bg-foreground text-background hover:bg-foreground/90 shadow-xl hover:shadow-2xl"
           >
-            <div className="absolute inset-0 bg-foreground/5 backdrop-blur-md rounded-full" />
-            <div className="absolute inset-0 border border-foreground/10 rounded-full group-hover:border-foreground/30 transition-colors duration-300" />
-            <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm rounded-full" />
-            
-            <span className="relative z-10 text-foreground group-hover:text-foreground/90 transition-colors duration-300">{dict.hero.viewWork}</span>
+            <span className="relative z-10 flex items-center gap-2">
+              {dict.hero.viewWork}
+              <motion.span
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ArrowDown className="w-4 h-4 md:w-5 md:h-5 text-background/80 group-hover:text-background transition-colors duration-300" />
+              </motion.span>
+            </span>
           </a>
         </motion.div>
       </motion.div>
