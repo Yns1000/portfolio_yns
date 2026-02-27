@@ -8,9 +8,11 @@ import { urlForImage } from "@/sanity/lib/image";
 
 export default function Experience({ experiences, dict }: { experiences: SanityExperience[], dict: Dictionary }) {
 
+  const isAr = dict.nav.projects !== 'Projects' && dict.nav.projects !== 'Projets';
+
   const getLocalizedText = (textObj: Record<string, string> | string | undefined | null) => {
     if (typeof textObj === 'object' && textObj !== null) {
-      return textObj[dict.nav.projects === 'Projects' ? 'en' : dict.nav.projects === 'Projets' ? 'fr' : 'ar'] || textObj.en || '';
+      return textObj[isAr ? 'ar' : dict.nav.projects === 'Projets' ? 'fr' : 'en'] || textObj.en || '';
     }
     return textObj || '';
   };
@@ -90,27 +92,8 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
                 </div>
               </div>
 
-              {index === experiences.length - 3 && (
-                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 left-0 md:left-[-10%] lg:left-[5%] z-0 pointer-events-none">
-                  <Image 
-                    src="/designer-working.svg" 
-                    alt="Designer illustration" 
-                    width={280} 
-                    height={280} 
-                    className="opacity-90 drop-shadow-sm dark:hidden"
-                  />
-                  <Image 
-                    src="/designer-working_white.svg" 
-                    alt="Designer illustration dark" 
-                    width={280} 
-                    height={280} 
-                    className="opacity-90 drop-shadow-sm hidden dark:block"
-                  />
-                </div>
-              )}
-
               {index === experiences.length - 2 && (
-                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 right-0 md:right-[-10%] lg:right-[5%] z-0 pointer-events-none">
+                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isAr ? 'left-0 md:left-[-10%] lg:left-[5%]' : 'right-0 md:right-[-10%] lg:right-[5%]'} z-0 pointer-events-none`}>
                   <Image 
                     src="/filling-survey.svg" 
                     alt="Survey illustration" 
@@ -129,20 +112,20 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
               )}
 
               {index === experiences.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 left-0 md:left-[-10%] lg:left-[5%] z-0 pointer-events-none">
+                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isAr ? 'right-0 md:right-[-10%] lg:right-[5%]' : 'left-0 md:left-[-10%] lg:left-[5%]'} z-0 pointer-events-none`}>
                   <Image 
                     src="/business-deal.svg" 
                     alt="Business Deal illustration" 
                     width={320} 
                     height={320} 
-                    className="opacity-90 drop-shadow-sm dark:hidden"
+                    className={`opacity-90 drop-shadow-sm dark:hidden ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
                   />
                   <Image 
                     src="/business-deal_white.svg" 
                     alt="Business Deal illustration dark" 
                     width={320} 
                     height={320} 
-                    className="opacity-90 drop-shadow-sm hidden dark:block"
+                    className={`opacity-90 drop-shadow-sm hidden dark:block ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
                   />
                 </div>
               )}

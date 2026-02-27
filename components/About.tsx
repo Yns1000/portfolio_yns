@@ -32,8 +32,8 @@ export default function About({
 }) {
   const mainAssoc = associations?.[0];
   const languages = skills?.filter(s => s.category === 'language') || [];
-  const techStack = skills?.filter(s => s.category === 'technical').map(s => getLocalizedText(s.name)) || [];
-
+  const isAr = dict.nav.projects !== 'Projects' && dict.nav.projects !== 'Projets';
+  
   function getLocalizedText(textObj: Record<string, string> | string | undefined | null) {
     if (typeof textObj === 'object' && textObj !== null) {
       return textObj[dict.nav.projects === 'Projects' ? 'en' : dict.nav.projects === 'Projets' ? 'fr' : 'ar'] || textObj.en || '';
@@ -49,8 +49,9 @@ export default function About({
       if (trimmedLine.startsWith('- ')) {
         const content = trimmedLine.substring(2);
         return (
-          <li key={i} className="ml-5 mb-1.5 list-disc text-muted-foreground leading-relaxed font-light">
-            {content}
+          <li key={i} className="mb-1.5 text-muted-foreground leading-relaxed font-light flex items-start gap-2">
+            <span className="font-bold text-primary mt-[2px]">+</span>
+            <span>{content}</span>
           </li>
         );
       }
@@ -107,7 +108,7 @@ export default function About({
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 auto-rows-[minmax(300px,auto)] gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 auto-rows-[minmax(300px,auto)] gap-6 mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,20 +122,59 @@ export default function About({
               {dict.nav.projects === 'Projects' ? 'Education' : dict.nav.projects === 'Projets' ? 'Formation' : 'تعليم'}
             </h3>
             
-            <div className="relative flex-1 flex flex-col justify-between pl-8 border-l-2 border-primary/20 ml-2 mt-4 space-y-6">
-              {education?.map((edu) => (
-                <div key={edu._id} className="relative z-10">
-                  <div className="absolute -left-[41px] mt-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background" />
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                    <h4 className="text-xl font-bold text-foreground leading-tight">{getLocalizedText(edu.degree)}</h4>
-                    <span className="text-xs font-mono text-muted-foreground bg-secondary/70 px-3 py-1 rounded-full w-fit shrink-0">
+            <div className="relative flex-1 flex flex-col justify-between pl-8 border-l-2 border-primary/20 ml-2 mt-6 space-y-6 pt-2">
+              <LucideIcons.ArrowUp size={28} className="absolute -top-4 -left-[15px] text-primary/40 z-0 bg-background pb-2 h-7 box-content" />
+              {education?.map((edu, index) => (
+                <div key={edu._id} className="relative z-10 group min-h-[250px] mb-16 last:mb-0">
+                  <div className="absolute -left-[41px] mt-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background z-20" />
+                  <div className="flex flex-col md:flex-row md:items-start justify-between mb-2 gap-2 relative z-20">
+                    <h4 className="text-xl font-bold text-foreground leading-tight sm:pr-[220px] md:pr-[250px]">{getLocalizedText(edu.degree)}</h4>
+                    <span className="text-xs font-mono text-muted-foreground bg-secondary/70 px-3 py-1 rounded-full w-fit shrink-0 relative z-30 md:absolute md:-top-1 md:right-4">
                       {formatDate(edu.startDate)} - {edu.isCurrent ? (dict.nav.projects === 'Projets' ? 'Présent' : dict.nav.projects === 'Projects' ? 'Present' : 'حاضر') : formatDate(edu.endDate || "")}
                     </span>
                   </div>
-                  <div className="font-medium text-primary mb-3 text-md">{edu.school}{edu.location ? `, ${edu.location}` : ''}</div>
-                  <div className="text-sm">
+                  <div className="font-medium text-primary mb-3 text-md relative z-20 sm:pr-[220px] md:pr-[250px]">{edu.school}{edu.location ? `, ${edu.location}` : ''}</div>
+                  <div className="text-sm relative z-20 sm:pr-[220px] md:pr-[250px] mt-6 pb-4">
                     {renderDescription(getLocalizedText(edu.description))}
                   </div>
+
+                  {index === 0 && (
+                    <div className="hidden sm:block absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
+                      <Image 
+                        src="/graduation.svg" 
+                        alt="Graduation illustration" 
+                        width={180} 
+                        height={180} 
+                        className="drop-shadow-sm dark:hidden"
+                      />
+                      <Image 
+                        src="/graduation_white.svg" 
+                        alt="Graduation illustration dark" 
+                        width={180} 
+                        height={180} 
+                        className="drop-shadow-sm hidden dark:block"
+                      />
+                    </div>
+                  )}
+
+                  {index === 1 && (
+                    <div className="hidden sm:block absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
+                      <Image 
+                        src="/scientist.svg" 
+                        alt="Scientist illustration" 
+                        width={180} 
+                        height={180} 
+                        className="drop-shadow-sm dark:hidden"
+                      />
+                      <Image 
+                        src="/scientist_white.svg" 
+                        alt="Scientist illustration dark" 
+                        width={180} 
+                        height={180} 
+                        className="drop-shadow-sm hidden dark:block"
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -180,17 +220,21 @@ export default function About({
               ))}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-border/40">
-              <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-5 block">
-                {dict.about?.techStack || "Tech Stack & Languages"}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {techStack.map((tech, i) => (
-                  <span key={i} className="bg-background border border-border/40 px-3 py-1.5 rounded-lg text-xs font-medium text-foreground/80 hover:text-foreground hover:bg-muted/40 transition-colors shadow-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="mt-8 pt-8 border-t border-border/40 flex items-center justify-center flex-1">
+              <Image 
+                src="/outside-comfort-zone.svg" 
+                alt="Outside comfort zone illustration" 
+                width={280} 
+                height={280} 
+                className="opacity-90 drop-shadow-sm dark:hidden transition-transform duration-500 hover:scale-105"
+              />
+              <Image 
+                src="/outside-comfort-zone_white.svg" 
+                alt="Outside comfort zone illustration dark" 
+                width={280} 
+                height={280} 
+                className="opacity-90 drop-shadow-sm hidden dark:block transition-transform duration-500 hover:scale-105"
+              />
             </div>
           </motion.div>
         </div>
@@ -295,9 +339,21 @@ export default function About({
                     </a>
                   )}
                   {mainAssoc.donationUrl && (
-                    <a href={mainAssoc.donationUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-background text-foreground px-6 py-3 rounded-full font-medium shadow-sm transition-transform hover:scale-105 active:scale-95 text-sm">
-                      <Heart size={16} className="text-rose-500 fill-rose-500" /> Donate
-                    </a>
+                    <div className="relative inline-flex mt-8 md:mt-2 lg:mt-0 items-center justify-center">
+                      {/* Hand-drawn style circle wrapping the button */}
+                      <svg className="absolute inset-0 w-[120%] h-[150%] -left-[10%] -top-[25%] opacity-70 pointer-events-none drop-shadow-sm" viewBox="0 0 200 60" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: mainAssoc.textColor || 'inherit' }} preserveAspectRatio="none">
+                        <path d="M 30,20 C 80,10 180,15 180,30 C 180,50 50,55 30,40 C 15,30 25,15 50,15" />
+                      </svg>
+
+                      {/* Single hand-drawn arrow pointing to the button (from top right) */}
+                      <svg className={`absolute -top-10 -right-8 w-14 h-14 opacity-80 ${isAr ? 'scale-x-[-1] -left-8 right-auto' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: mainAssoc.textColor || 'inherit' }}>
+                        <path d="M19 6c-4 2-7 5-11 9M8 15l1-6m-1 6l6 1" />
+                      </svg>
+
+                      <a href={mainAssoc.donationUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-background text-foreground px-6 py-3 rounded-full font-bold shadow-md transition-transform hover:scale-105 active:scale-95 text-sm ring-2 ring-background/50">
+                        <Heart size={16} className="text-rose-500 fill-rose-500" /> {dict.nav.projects === 'Projects' ? 'Donate' : dict.nav.projects === 'Projets' ? 'Faire un don' : 'تبرع '}
+                      </a>
+                    </div>
                   )}
                 </div>
               </div>

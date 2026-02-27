@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { useLenis } from "@studio-freight/react-lenis";
 import { type Dictionary } from "@/lib/dictionary";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function HeroClient({ dict }: { dict: Dictionary }) {
   const lenis = useLenis();
+  const isAr = dict.nav.projects !== 'Projects' && dict.nav.projects !== 'Projets';
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
@@ -33,6 +35,28 @@ export default function HeroClient({ dict }: { dict: Dictionary }) {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 text-center max-w-5xl w-full"
       >
+        {/* Decorative Illustration */}
+        <motion.div 
+          initial={{ opacity: 0, x: isAr ? -50 : 50, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className={`absolute hidden lg:block top-[-20%] xl:top-[-10%] ${isAr ? 'left-[-15%] xl:-left-[10%]' : 'right-[-15%] xl:-right-[10%]'} z-20 pointer-events-none`}
+        >
+          <Image 
+            src="/designer-working.svg" 
+            alt="Designer illustration" 
+            width={380} 
+            height={380} 
+            className={`opacity-90 drop-shadow-2xl dark:hidden ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
+          />
+          <Image 
+            src="/designer-working_white.svg" 
+            alt="Designer illustration dark" 
+            width={380} 
+            height={380} 
+            className={`opacity-90 drop-shadow-2xl hidden dark:block ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
+          />
+        </motion.div>
         <motion.span 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
