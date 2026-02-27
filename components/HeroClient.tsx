@@ -29,34 +29,23 @@ export default function HeroClient({ dict }: { dict: Dictionary }) {
         <div className="absolute top-[40%] right-[20%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-foreground/5 dark:bg-accent/10 blur-[90px] rounded-full dark:mix-blend-multiply" />
       </div>
 
+      {/* Decorative Doodle Background */}
+      <div className={`absolute inset-0 w-full h-full opacity-10 pointer-events-none z-0 ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}>
+        <Image 
+          src="/Doodle/9.svg" 
+          alt="Doodle decorative background" 
+          fill
+          className="object-cover dark:invert"
+          priority
+        />
+      </div>
+
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 text-center max-w-5xl w-full"
       >
-        {/* Decorative Illustration */}
-        <motion.div 
-          initial={{ opacity: 0, x: isAr ? -50 : 50, y: 20 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className={`absolute hidden lg:block top-[-20%] xl:top-[-10%] ${isAr ? 'left-[-15%] xl:-left-[10%]' : 'right-[-15%] xl:-right-[10%]'} z-20 pointer-events-none`}
-        >
-          <Image 
-            src="/designer-working.svg" 
-            alt="Designer illustration" 
-            width={380} 
-            height={380} 
-            className={`opacity-90 drop-shadow-2xl dark:hidden ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
-          />
-          <Image 
-            src="/designer-working_white.svg" 
-            alt="Designer illustration dark" 
-            width={380} 
-            height={380} 
-            className={`opacity-90 drop-shadow-2xl hidden dark:block ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
-          />
-        </motion.div>
         <motion.span 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 

@@ -41,6 +41,8 @@ export default function About({
     return textObj || '';
   }
 
+  const techStack = skills?.filter(s => s.category === 'technical').map(s => getLocalizedText(s.name)) || [];
+
   const renderDescription = (text: string) => {
     return text.split('\n').map((line, i) => {
       const trimmedLine = line.trim();
@@ -187,6 +189,7 @@ export default function About({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="md:col-span-6 lg:col-span-4 bg-card border border-border/50 rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden"
           >
+            <div className={`absolute top-0 ${isAr ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'} w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 transition-colors duration-500`} />
             <h3 className="text-2xl font-bold text-foreground mb-8 relative z-10 flex items-center gap-3">
               <Globe className="text-primary" size={26} />
               {dict.nav.projects === 'Projects' ? 'Languages' : dict.nav.projects === 'Projets' ? 'Langues' : 'اللغات'}
@@ -220,21 +223,34 @@ export default function About({
               ))}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-border/40 flex items-center justify-center flex-1">
+            <div className="mt-8 pt-4 flex items-center justify-center flex-1">
               <Image 
                 src="/outside-comfort-zone.svg" 
                 alt="Outside comfort zone illustration" 
-                width={280} 
-                height={280} 
-                className="opacity-90 drop-shadow-sm dark:hidden transition-transform duration-500 hover:scale-105"
+                width={220} 
+                height={220} 
+                className={`opacity-90 drop-shadow-sm dark:hidden transition-transform duration-500 hover:scale-105 ${isAr ? 'scale-x-[-1]' : ''}`}
               />
               <Image 
                 src="/outside-comfort-zone_white.svg" 
                 alt="Outside comfort zone illustration dark" 
-                width={280} 
-                height={280} 
-                className="opacity-90 drop-shadow-sm hidden dark:block transition-transform duration-500 hover:scale-105"
+                width={220} 
+                height={220} 
+                className={`opacity-90 drop-shadow-sm hidden dark:block transition-transform duration-500 hover:scale-105 ${isAr ? 'scale-x-[-1]' : ''}`}
               />
+            </div>
+
+            <div className="mt-auto pt-6">
+              <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-5 block">
+                {dict.about?.techStack || "Tech Stack & Languages"}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {techStack.map((tech, i) => (
+                  <span key={i} className="bg-background border border-border/40 px-3 py-1.5 rounded-lg text-xs font-medium text-foreground/80 hover:text-foreground hover:bg-muted/40 transition-colors shadow-sm cursor-default">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -339,16 +355,23 @@ export default function About({
                     </a>
                   )}
                   {mainAssoc.donationUrl && (
-                    <div className="relative inline-flex mt-8 md:mt-2 lg:mt-0 items-center justify-center">
-                      {/* Hand-drawn style circle wrapping the button */}
-                      <svg className="absolute inset-0 w-[120%] h-[150%] -left-[10%] -top-[25%] opacity-70 pointer-events-none drop-shadow-sm" viewBox="0 0 200 60" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: mainAssoc.textColor || 'inherit' }} preserveAspectRatio="none">
-                        <path d="M 30,20 C 80,10 180,15 180,30 C 180,50 50,55 30,40 C 15,30 25,15 50,15" />
-                      </svg>
-
-                      {/* Single hand-drawn arrow pointing to the button (from top right) */}
-                      <svg className={`absolute -top-10 -right-8 w-14 h-14 opacity-80 ${isAr ? 'scale-x-[-1] -left-8 right-auto' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: mainAssoc.textColor || 'inherit' }}>
-                        <path d="M19 6c-4 2-7 5-11 9M8 15l1-6m-1 6l6 1" />
-                      </svg>
+                    <div className="relative inline-flex mt-12 md:mt-6 lg:mt-4 items-center justify-center">
+                      <Image 
+                        src="/Arrow.svg" 
+                        alt="Arrow pointing to donate" 
+                        width={60} 
+                        height={60} 
+                        className={`absolute -top-12 -left-8 opacity-80 rotate-[120deg] ${isAr ? 'scale-x-[-1] -right-8 left-auto rotate-[-120deg]' : ''} drop-shadow-md`}
+                        style={{ filter: mainAssoc.textColor ? `drop-shadow(0px 0px 4px ${mainAssoc.textColor})` : 'none' }}
+                      />
+                      <Image 
+                        src="/Arrow.svg" 
+                        alt="Arrow pointing to donate" 
+                        width={50} 
+                        height={50} 
+                        className={`absolute -bottom-10 -right-6 opacity-80 -rotate-45 ${isAr ? 'scale-x-[-1] -left-6 right-auto rotate-45' : ''} drop-shadow-md`}
+                        style={{ filter: mainAssoc.textColor ? `drop-shadow(0px 0px 4px ${mainAssoc.textColor})` : 'none' }}
+                      />
 
                       <a href={mainAssoc.donationUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-background text-foreground px-6 py-3 rounded-full font-bold shadow-md transition-transform hover:scale-105 active:scale-95 text-sm ring-2 ring-background/50">
                         <Heart size={16} className="text-rose-500 fill-rose-500" /> {dict.nav.projects === 'Projects' ? 'Donate' : dict.nav.projects === 'Projets' ? 'Faire un don' : 'تبرع '}

@@ -24,5 +24,8 @@
     "techStack": "Tech Stack & Languages",
     "associative": "Associative",
     "download": "Download"
+  },
+  "footer": {
+    "illustrationsBy": "Illustrations by "
   }
 }

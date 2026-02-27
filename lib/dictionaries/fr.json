@@ -8,7 +8,7 @@
   },
   "hero": {
     "greeting": "Bonjour, je suis",
-    "role": "Ingénieur Informatique & Industriel",
+    "role": "Ingénieur en Informatique & Industriel",
     "description": "Portfolio.",
     "cta": "Me contacter",
     "viewWork": "Voir mes projets"
@@ -24,5 +24,8 @@
     "techStack": "Technologies & Langages",
     "associative": "Associatif & Bénévolat",
     "download": "Télécharger"
+  },
+  "footer": {
+    "illustrationsBy": "Illustrations par "
   }
 }
