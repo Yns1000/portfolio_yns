@@ -30,7 +30,10 @@ export default function HeroClient({ dict }: { dict: Dictionary }) {
       </div>
 
       {/* Decorative Doodle Background */}
-      <div className={`absolute inset-0 w-full h-full opacity-10 pointer-events-none z-0 ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}>
+      <div 
+        className={`absolute inset-0 w-full h-full opacity-10 pointer-events-none z-0 ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
+        style={{ maskImage: "linear-gradient(to bottom, white 30%, transparent 90%)", WebkitMaskImage: "linear-gradient(to bottom, white 30%, transparent 90%)" }}
+      >
         <Image 
           src="/Doodle/9.svg" 
           alt="Doodle decorative background" 

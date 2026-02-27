@@ -25,8 +25,9 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
       if (trimmedLine.startsWith('- ')) {
         const content = trimmedLine.substring(2);
         return (
-          <li key={i} className="ml-5 mb-1.5 list-disc text-muted-foreground leading-relaxed font-light">
-            {content}
+          <li key={i} className="mb-1.5 list-none flex items-start gap-3 text-muted-foreground leading-relaxed font-light">
+            <span className="text-primary font-bold mt-[2px]">+</span>
+            <span>{content}</span>
           </li>
         );
       }

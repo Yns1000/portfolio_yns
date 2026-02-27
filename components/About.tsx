@@ -262,7 +262,7 @@ export default function About({
               {dict.nav.projects === 'Projects' ? 'Hobbies' : dict.nav.projects === 'Projets' ? 'Loisirs' : 'الهوايات'}
             </h3>
             <div className="relative flex flex-col items-start min-h-[160px] w-full">
-              <div className="flex flex-nowrap md:flex-wrap lg:flex-nowrap justify-start md:justify-center lg:justify-between items-start gap-4 lg:gap-8 w-full md:pr-[240px] lg:pr-[320px] overflow-x-auto pb-4 pt-4 px-2 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-20">
+              <div className={`flex flex-wrap justify-start lg:justify-between items-start gap-4 lg:gap-8 w-full ${isAr ? 'lg:pl-[320px]' : 'lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
                 {hobbies.map((hobby, index) => {
                   const iconString = hobby.iconName?.trim() || 'Star';
                   const Icon = ((LucideIcons as unknown) as Record<string, LucideIcons.LucideIcon>)[iconString] || LucideIcons.Star;
@@ -286,20 +286,20 @@ export default function About({
                 })}
               </div>
               
-              <div className="hidden md:block absolute bottom-[-34px] right-4 lg:right-12 z-10 pointer-events-none">
+              <div className={`hidden md:block absolute bottom-[-34px] ${isAr ? 'left-4 lg:left-12' : 'right-4 lg:right-12'} z-10 pointer-events-none`}>
                 <Image 
                   src="/jogging.svg" 
                   alt="Jogging illustration" 
                   width={280} 
                   height={280} 
-                  className="opacity-90 drop-shadow-lg dark:hidden"
+                  className={`opacity-90 drop-shadow-lg dark:hidden ${isAr ? 'scale-x-[-1]' : ''}`}
                 />
                 <Image 
                   src="/jogging_white.svg" 
                   alt="Jogging illustration dark" 
                   width={280} 
                   height={280} 
-                  className="opacity-90 drop-shadow-lg hidden dark:block"
+                  className={`opacity-90 drop-shadow-lg hidden dark:block ${isAr ? 'scale-x-[-1]' : ''}`}
                 />
               </div>
             </div>
@@ -333,8 +333,9 @@ export default function About({
                       if (!trimmedLine) return null;
                       if (trimmedLine.startsWith('- ')) {
                         return (
-                          <li key={i} className="ml-5 mb-1.5 list-disc leading-relaxed font-light">
-                            {trimmedLine.substring(2)}
+                          <li key={i} className="mb-1.5 list-none flex items-start gap-3 leading-relaxed font-light">
+                            <span className="font-bold opacity-80 mt-[2px]">+</span>
+                            <span>{trimmedLine.substring(2)}</span>
                           </li>
                         );
                       }
@@ -343,25 +344,27 @@ export default function About({
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 shrink-0">
-                  {mainAssoc.instagramUrl && (
-                    <a href={mainAssoc.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-background/20 hover:bg-background/30 px-6 py-3 rounded-full font-medium transition-colors text-sm backdrop-blur-sm">
-                      Instagram <ExternalLink size={16} />
-                    </a>
-                  )}
-                  {mainAssoc.tiktokUrl && (
-                    <a href={mainAssoc.tiktokUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-background/20 hover:bg-background/30 px-6 py-3 rounded-full font-medium transition-colors text-sm backdrop-blur-sm">
-                      TikTok <ExternalLink size={16} />
-                    </a>
-                  )}
+                <div className={`w-full md:w-auto flex justify-between md:justify-end items-center gap-4 shrink-0 mt-6 md:mt-0 ${isAr ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div className={`flex flex-col md:flex-row gap-3 ${isAr ? 'md:flex-row-reverse' : ''}`}>
+                    {mainAssoc.instagramUrl && (
+                      <a href={mainAssoc.instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-background/20 hover:bg-background/30 h-10 px-4 sm:h-12 sm:px-6 rounded-full font-medium transition-colors text-xs sm:text-sm backdrop-blur-sm">
+                        Instagram <ExternalLink size={16} />
+                      </a>
+                    )}
+                    {mainAssoc.tiktokUrl && (
+                      <a href={mainAssoc.tiktokUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-background/20 hover:bg-background/30 h-10 px-4 sm:h-12 sm:px-6 rounded-full font-medium transition-colors text-xs sm:text-sm backdrop-blur-sm">
+                        TikTok <ExternalLink size={16} />
+                      </a>
+                    )}
+                  </div>
                   {mainAssoc.donationUrl && (
-                    <div className="relative inline-flex mt-12 md:mt-6 lg:mt-4 items-center justify-center">
+                    <div className="relative flex items-center justify-center mt-2 sm:mt-0">
                       <Image 
                         src="/Arrow.svg" 
                         alt="Arrow pointing to donate" 
                         width={60} 
                         height={60} 
-                        className={`absolute -top-12 -left-8 opacity-80 rotate-[120deg] ${isAr ? 'scale-x-[-1] -right-8 left-auto rotate-[-120deg]' : ''} drop-shadow-md`}
+                        className="absolute opacity-80 drop-shadow-md pointer-events-none -top-12 -left-8 rotate-[120deg]"
                         style={{ filter: mainAssoc.textColor ? `drop-shadow(0px 0px 4px ${mainAssoc.textColor})` : 'none' }}
                       />
                       <Image 
@@ -369,11 +372,11 @@ export default function About({
                         alt="Arrow pointing to donate" 
                         width={50} 
                         height={50} 
-                        className={`absolute -bottom-10 -right-6 opacity-80 -rotate-45 ${isAr ? 'scale-x-[-1] -left-6 right-auto rotate-45' : ''} drop-shadow-md`}
+                        className="absolute opacity-80 drop-shadow-md pointer-events-none -bottom-10 -right-6 -rotate-45"
                         style={{ filter: mainAssoc.textColor ? `drop-shadow(0px 0px 4px ${mainAssoc.textColor})` : 'none' }}
                       />
 
-                      <a href={mainAssoc.donationUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-background text-foreground px-6 py-3 rounded-full font-bold shadow-md transition-transform hover:scale-105 active:scale-95 text-sm ring-2 ring-background/50">
+                      <a href={mainAssoc.donationUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center justify-center gap-2 bg-background text-foreground h-12 px-6 w-full sm:w-auto rounded-full font-bold shadow-md transition-transform hover:scale-105 active:scale-95 text-sm ring-2 ring-background/50">
                         <Heart size={16} className="text-rose-500 fill-rose-500" /> {dict.nav.projects === 'Projects' ? 'Donate' : dict.nav.projects === 'Projets' ? 'Faire un don' : 'تبرع '}
                       </a>
                     </div>
