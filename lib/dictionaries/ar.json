@@ -24,5 +24,8 @@
     "techStack": "التقنيات واللغات",
     "associative": "العمل التطوعي والجمعيّ",
     "download": "تنزيل"
+  },
+  "footer": {
+    "illustrationsBy": "الرسومات التوضيحية بواسطة "
   }
 }

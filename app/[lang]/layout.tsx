@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { i18n, type Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionary";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -44,6 +45,8 @@ export default async function RootLayout({
   const dir = lang === "ar" ? "rtl" : "ltr";
   const baseFonts = lang === "ar" ? `${tajawal.variable}` : `${geistSans.variable} ${geistMono.variable}`;
   const fontClass = `${baseFonts}`;
+  
+  const dict = await getDictionary(lang);
 
   return (
     <html lang={lang} dir={dir} className={fontClass} suppressHydrationWarning>
@@ -59,7 +62,7 @@ export default async function RootLayout({
             <main className="overflow-x-hidden w-full flex flex-col min-h-screen">
               {children}
             </main>
-            <Footer />
+            <Footer dict={dict} />
           </SmoothScroll>
         </ThemeProvider>
       </body>
