@@ -28,27 +28,38 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
+const baseUrl = "https://yns-bgrt.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
-    template: "%s | Yns",
-    default: "Yns | Portfolio",
+    template: "%s | Younes Boughriet",
+    default: "Younes Boughriet | Portfolio",
   },
-  description: "IT & Industrial Engineer Portfolio. Crafting premium digital experiences, web applications, and associative projects.",
-  keywords: ["Portfolio", "Yns", "IT Engineer", "Industrial Engineer", "Web Developer", "Software Engineer", "Full Stack", "Front-end"],
-  authors: [{ name: "Yns" }],
-  creator: "Yns",
+  description: "Younes Boughriet - IT & Industrial Engineer. Crafting premium digital experiences, full-stack web applications, and innovative software solutions.",
+  keywords: ["Younes Boughriet", "Boughriet Younes", "Engineer", "IT Engineer", "Industrial Engineer", "Web Developer", "Software Engineer", "Full Stack", "Portfolio"],
+  authors: [{ name: "Younes Boughriet" }],
+  creator: "Younes Boughriet",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en",
+      "fr-FR": "/fr",
+      "ar-DZ": "/ar",
+    },
+  },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    title: "Yns | Portfolio",
-    description: "IT & Industrial Engineer Portfolio. Crafting premium digital experiences.",
-    siteName: "Yns Portfolio",
-    images: [{ url: "/favicon_io/android-chrome-512x512.png", width: 512, height: 512, alt: "Yns Portfolio" }],
+    locale: "fr_FR",
+    title: "Younes Boughriet | Portfolio",
+    description: "Découvrez le portfolio de Younes Boughriet, ingénieur IT et industriel spécialisé en développement web et solutions logicielles.",
+    siteName: "Younes Boughriet Portfolio",
+    images: [{ url: "/favicon_io/android-chrome-512x512.png", width: 512, height: 512, alt: "Younes Boughriet Portfolio" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yns | Portfolio",
-    description: "IT & Industrial Engineer Portfolio.",
+    title: "Younes Boughriet | Portfolio",
+    description: "Portfolio de Younes Boughriet - Ingénieur IT & Industriel.",
     images: ["/favicon_io/android-chrome-512x512.png"],
   },
   icons: {
