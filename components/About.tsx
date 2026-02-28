@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Download, ExternalLink, GraduationCap, Globe, Heart, Gamepad2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { type Dictionary } from "@/lib/dictionary";
-import { type SanityEducation, type SanitySkill, type SanityAssociation, type SanityHobby } from "@/types/sanity";
+import { type SanityEducation, type SanitySkill, type SanityAssociation, type SanityHobby, type SanitySettings } from "@/types/sanity";
 
 /**
  * Renders the About section including education, skills, hobbies, and associative experience.
@@ -22,12 +22,14 @@ export default function About({
   skills, 
   associations, 
   hobbies,
+  settings,
   dict 
 }: { 
   education: SanityEducation[], 
   skills: SanitySkill[], 
   associations: SanityAssociation[], 
   hobbies: SanityHobby[],
+  settings?: SanitySettings,
   dict: Dictionary 
 }) {
   const mainAssoc = associations?.[0];
@@ -68,7 +70,7 @@ export default function About({
   };
 
   return (
-    <section id="about" className="py-32 relative">
+    <section id="about" className="pt-10 pb-20 relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <motion.div 
@@ -89,24 +91,28 @@ export default function About({
             transition={{ delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a 
-              href="/cv-fr.pdf" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-3 rounded-full font-medium tracking-wide hover:bg-foreground/90 hover:scale-105 active:scale-95 transition-all text-sm group shadow-lg"
-            >
-              <Download size={16} className="group-hover:-translate-y-1 transition-transform" />
-              {dict.about?.cvFr || "CV (FR)"}
-            </a>
-            <a 
-              href="/cv-en.pdf" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 rounded-full font-medium tracking-wide hover:bg-muted hover:scale-105 active:scale-95 transition-all text-sm group"
-            >
-              <Download size={16} className="group-hover:-translate-y-1 transition-transform" />
-              {dict.about?.cvEn || "CV (EN)"}
-            </a>
+            {settings?.cvFrUrl && (
+              <a 
+                href={settings.cvFrUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-3 rounded-full font-medium tracking-wide hover:bg-foreground/90 hover:scale-105 active:scale-95 transition-all text-sm group shadow-lg"
+              >
+                <Download size={16} className="group-hover:-translate-y-1 transition-transform" />
+                {dict.about?.cvFr || "CV (FR)"}
+              </a>
+            )}
+            {settings?.cvEnUrl && (
+              <a 
+                href={settings.cvEnUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 rounded-full font-medium tracking-wide hover:bg-muted hover:scale-105 active:scale-95 transition-all text-sm group"
+              >
+                <Download size={16} className="group-hover:-translate-y-1 transition-transform" />
+                {dict.about?.cvEn || "CV (EN)"}
+              </a>
+            )}
           </motion.div>
         </div>
 

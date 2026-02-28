@@ -56,7 +56,7 @@ export default function Projects({ projects, dict }: { projects: SanityProject[]
   };
 
   return (
-    <section id="projects" className="py-32">
+    <section id="projects" className="pt-10 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -68,4 +68,7 @@ export interface SanitySettings {
   title?: string;
   githubUrl?: string;
   linkedinUrl?: string;
+  contactEmail?: string;
+  cvFrUrl?: string;
+  cvEnUrl?: string;
 }

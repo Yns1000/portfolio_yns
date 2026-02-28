@@ -23,5 +23,23 @@ export default defineType({
       type: 'url',
       description: 'Your LinkedIn profile link',
     }),
+    defineField({
+      name: 'contactEmail',
+      title: 'Contact Email',
+      type: 'string',
+      description: 'Email address where contact forms will be sent',
+    }),
+    defineField({
+      name: 'cvFrUrl',
+      title: 'CV (French) URL or Path',
+      type: 'string',
+      description: 'Link to your French CV (e.g. /cv-fr.pdf). Leave empty to hide the button.',
+    }),
+    defineField({
+      name: 'cvEnUrl',
+      title: 'CV (English) URL or Path',
+      type: 'string',
+      description: 'Link to your English CV (e.g. /cv-en.pdf). Leave empty to hide the button.',
+    }),
   ],
 })

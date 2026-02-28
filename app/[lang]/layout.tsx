@@ -29,8 +29,43 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Yns | Portfolio",
-  description: "IT & Industrial Engineer Portfolio. Crafting premium digital experiences.",
+  title: {
+    template: "%s | Yns",
+    default: "Yns | Portfolio",
+  },
+  description: "IT & Industrial Engineer Portfolio. Crafting premium digital experiences, web applications, and associative projects.",
+  keywords: ["Portfolio", "Yns", "IT Engineer", "Industrial Engineer", "Web Developer", "Software Engineer", "Full Stack", "Front-end"],
+  authors: [{ name: "Yns" }],
+  creator: "Yns",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Yns | Portfolio",
+    description: "IT & Industrial Engineer Portfolio. Crafting premium digital experiences.",
+    siteName: "Yns Portfolio",
+    images: [{ url: "/favicon_io/android-chrome-512x512.png", width: 512, height: 512, alt: "Yns Portfolio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yns | Portfolio",
+    description: "IT & Industrial Engineer Portfolio.",
+    images: ["/favicon_io/android-chrome-512x512.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon_io/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon_io/favicon-16x16.png", sizes: "16x16", type: "image/png" }
+    ],
+    apple: [
+      { url: "/favicon_io/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ],
+    other: [
+      { rel: "android-chrome", url: "/favicon_io/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/favicon_io/android-chrome-512x512.png", sizes: "512x512" }
+    ]
+  },
+  manifest: "/favicon_io/site.webmanifest",
 };
 
 export default async function RootLayout({

@@ -27,5 +27,16 @@
   },
   "footer": {
     "illustrationsBy": "Illustrations by "
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's work together",
+    "name": "Name",
+    "email": "Email",
+    "message": "Your message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "An error occurred."
   }
 }

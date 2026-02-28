@@ -78,6 +78,9 @@ export const settingsQuery = groq`
     _id,
     title,
     githubUrl,
-    linkedinUrl
+    linkedinUrl,
+    contactEmail,
+    cvFrUrl,
+    cvEnUrl
   }
 `

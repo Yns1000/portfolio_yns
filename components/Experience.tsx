@@ -42,8 +42,8 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
   };
 
   return (
-    <section id="experience" className="py-32 bg-muted/30 relative">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="experience" className="pt-10 pb-20 bg-muted/30 relative">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
           <div className="w-24 h-1 bg-primary rounded-full opacity-80" />
         </motion.div>
 
-        <div className="relative space-y-12 before:absolute before:inset-0 before:ml-2 md:before:mx-auto md:before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border/80 before:to-transparent">
+        <div className="relative space-y-12 before:absolute before:top-0 before:bottom-0 before:start-[9px] md:before:start-1/2 md:before:-translate-x-px before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border/80 before:to-transparent">
           {experiences.map((exp, index) => (
             <motion.div 
               key={exp._id}
@@ -66,7 +66,7 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
             >
-              <div className="flex z-10 items-center justify-center w-5 h-5 bg-primary rounded-full border-4 border-background shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-[-0.45rem] md:ml-[0]" />
+              <div className="flex z-10 items-center justify-center w-5 h-5 bg-primary rounded-full border-4 border-background shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2" />
               
               <div className="w-[calc(100%-2.5rem)] md:w-[calc(50%-3rem)] bg-card p-8 rounded-2xl border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40">
                 <div className="mb-4 relative z-10 flex flex-col items-start gap-4">
