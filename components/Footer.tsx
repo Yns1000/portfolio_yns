@@ -24,6 +24,9 @@ export default async function Footer({ dict }: { dict: Dictionary }) {
         </div>
         
         <div className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
+          <a href="mailto:younes.bgrt@icloud.com" className="hover:text-foreground transition-colors">
+            Email
+          </a>
           {settings?.linkedinUrl && (
             <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
               LinkedIn

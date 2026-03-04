@@ -229,6 +229,19 @@ export default function About({
                   </div>
                 </div>
               ))}
+              <div className="group relative p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 shadow-sm overflow-hidden flex flex-row items-center justify-between gap-4 mt-2">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10 flex items-center gap-3">
+                  <span className="font-bold text-foreground tracking-tight text-base">
+                    {lang === 'en' ? "Driver's License" : lang === 'fr' ? "Permis de conduire" : "رخصة قيادة"}
+                  </span>
+                </div>
+                <div className="relative z-10 flex items-center justify-end shrink-0">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary ring-1 ring-primary/20 shadow-sm">
+                    B
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8 pt-4 flex items-center justify-center flex-1">
