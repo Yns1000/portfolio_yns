@@ -147,39 +147,39 @@ export default function About({
                   </div>
 
                   {index === 0 && (
-                    <div className="hidden sm:block absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
+                    <div className="mt-8 flex justify-center sm:block sm:mt-0 sm:absolute sm:right-0 md:right-4 sm:top-1/2 sm:-translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
                       <Image 
                         src="/graduation.svg" 
                         alt="Graduation illustration" 
                         width={180} 
                         height={180} 
-                        className="drop-shadow-sm dark:hidden"
+                        className="drop-shadow-sm dark:hidden w-32 h-32 sm:w-[180px] sm:h-[180px]"
                       />
                       <Image 
                         src="/graduation_white.svg" 
                         alt="Graduation illustration dark" 
                         width={180} 
                         height={180} 
-                        className="drop-shadow-sm hidden dark:block"
+                        className="drop-shadow-sm hidden dark:block w-32 h-32 sm:w-[180px] sm:h-[180px]"
                       />
                     </div>
                   )}
 
                   {index === 1 && (
-                    <div className="hidden sm:block absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
+                    <div className="mt-8 flex justify-center sm:block sm:mt-0 sm:absolute sm:right-0 md:right-4 sm:top-1/2 sm:-translate-y-1/2 z-0 pointer-events-none opacity-90 transition-transform duration-500 hover:scale-105">
                       <Image 
                         src="/scientist.svg" 
                         alt="Scientist illustration" 
                         width={180} 
                         height={180} 
-                        className="drop-shadow-sm dark:hidden"
+                        className="drop-shadow-sm dark:hidden w-32 h-32 sm:w-[180px] sm:h-[180px]"
                       />
                       <Image 
                         src="/scientist_white.svg" 
                         alt="Scientist illustration dark" 
                         width={180} 
                         height={180} 
-                        className="drop-shadow-sm hidden dark:block"
+                        className="drop-shadow-sm hidden dark:block w-32 h-32 sm:w-[180px] sm:h-[180px]"
                       />
                     </div>
                   )}
@@ -268,7 +268,7 @@ export default function About({
               {dict.nav.projects === 'Projects' ? 'Hobbies' : dict.nav.projects === 'Projets' ? 'Loisirs' : 'الهوايات'}
             </h3>
             <div className="relative flex flex-col items-start min-h-[160px] w-full">
-              <div className={`flex flex-wrap justify-start lg:justify-between items-start gap-4 lg:gap-8 w-full ${isAr ? 'lg:pl-[320px]' : 'lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
+              <div className={`grid grid-cols-3 place-items-center gap-y-8 gap-x-2 sm:flex sm:flex-wrap sm:justify-start lg:justify-between sm:items-start sm:gap-4 lg:gap-8 w-full ${isAr ? 'lg:pl-[320px]' : 'lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
                 {hobbies.map((hobby, index) => {
                   const iconString = hobby.iconName?.trim() || 'Star';
                   const Icon = ((LucideIcons as unknown) as Record<string, LucideIcons.LucideIcon>)[iconString] || LucideIcons.Star;

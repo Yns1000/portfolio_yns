@@ -64,11 +64,11 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+              className="relative flex items-center justify-between md:odd:flex-row-reverse group"
             >
-              <div className="flex z-10 items-center justify-center w-5 h-5 bg-primary rounded-full border-4 border-background shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2" />
+              <div className="flex z-10 items-center justify-center w-5 h-5 bg-primary rounded-full border-4 border-background shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2" />
               
-              <div className="w-[calc(100%-2.5rem)] md:w-[calc(50%-3rem)] bg-card p-8 rounded-2xl border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40">
+              <div className="w-[calc(100%-2.5rem)] md:w-[calc(50%-3rem)] bg-card p-8 rounded-2xl border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40 relative z-20">
                 <div className="mb-4 relative z-10 flex flex-col items-start gap-4">
                   <span className="text-[10px] md:text-sm whitespace-nowrap font-mono text-muted-foreground bg-secondary/70 px-2.5 py-1 md:px-3 md:py-1 rounded-full shrink-0">
                     {formatDate(exp.startDate)} - {exp.isCurrent ? (dict.nav.projects === 'Projets' ? "Présent" : dict.nav.projects === 'Projects' ? "Present" : "حاضر") : formatDate(exp.endDate || "")}
@@ -93,62 +93,59 @@ export default function Experience({ experiences, dict }: { experiences: SanityE
                 </div>
               </div>
 
-              {index === experiences.length - 3 && (
-                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isAr ? 'right-0 md:right-[-10%] lg:right-[5%]' : 'left-0 md:left-[-10%] lg:left-[5%]'} z-0 pointer-events-none`}>
-                  <Image 
-                    src="/designer-working.svg" 
-                    alt="Designer illustration" 
-                    width={280} 
-                    height={280} 
-                    className={`opacity-90 drop-shadow-sm dark:hidden ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
-                  />
-                  <Image 
-                    src="/designer-working_white.svg" 
-                    alt="Designer illustration dark" 
-                    width={280} 
-                    height={280} 
-                    className={`opacity-90 drop-shadow-sm hidden dark:block ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
-                  />
-                </div>
-              )}
+              <div className="hidden md:flex md:w-[calc(50%-3rem)] items-center justify-center relative z-0 pointer-events-none">
+                {index === experiences.length - 3 && (
+                  <div className={`relative w-full max-w-[280px] lg:max-w-[320px] aspect-square transition-transform duration-500 hover:scale-105`}>
+                    <Image 
+                      src="/designer-working.svg" 
+                      alt="Designer illustration" 
+                      fill
+                      className={`object-contain opacity-90 drop-shadow-sm dark:hidden ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
+                    />
+                    <Image 
+                      src="/designer-working_white.svg" 
+                      alt="Designer illustration dark" 
+                      fill
+                      className={`object-contain opacity-90 drop-shadow-sm hidden dark:block ${isAr ? 'scale-x-[1]' : 'scale-x-[-1]'}`}
+                    />
+                  </div>
+                )}
 
-              {index === experiences.length - 2 && (
-                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isAr ? 'left-0 md:left-[-10%] lg:left-[5%]' : 'right-0 md:right-[-10%] lg:right-[5%]'} z-0 pointer-events-none`}>
-                  <Image 
-                    src="/filling-survey.svg" 
-                    alt="Survey illustration" 
-                    width={280} 
-                    height={280} 
-                    className="opacity-90 drop-shadow-sm dark:hidden"
-                  />
-                  <Image 
-                    src="/filling-survey_white.svg" 
-                    alt="Survey illustration dark" 
-                    width={280} 
-                    height={280} 
-                    className="opacity-90 drop-shadow-sm hidden dark:block"
-                  />
-                </div>
-              )}
+                {index === experiences.length - 2 && (
+                  <div className={`relative w-full max-w-[280px] lg:max-w-[320px] aspect-square transition-transform duration-500 hover:scale-105`}>
+                    <Image 
+                      src="/filling-survey.svg" 
+                      alt="Survey illustration" 
+                      fill
+                      className="object-contain opacity-90 drop-shadow-sm dark:hidden"
+                    />
+                    <Image 
+                      src="/filling-survey_white.svg" 
+                      alt="Survey illustration dark" 
+                      fill
+                      className="object-contain opacity-90 drop-shadow-sm hidden dark:block"
+                    />
+                  </div>
+                )}
 
-              {index === experiences.length - 1 && (
-                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isAr ? 'right-0 md:right-[-10%] lg:right-[5%]' : 'left-0 md:left-[-10%] lg:left-[5%]'} z-0 pointer-events-none`}>
-                  <Image 
-                    src="/business-deal.svg" 
-                    alt="Business Deal illustration" 
-                    width={320} 
-                    height={320} 
-                    className={`opacity-90 drop-shadow-sm dark:hidden ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
-                  />
-                  <Image 
-                    src="/business-deal_white.svg" 
-                    alt="Business Deal illustration dark" 
-                    width={320} 
-                    height={320} 
-                    className={`opacity-90 drop-shadow-sm hidden dark:block ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
-                  />
-                </div>
-              )}
+                {index === experiences.length - 1 && (
+                  <div className={`relative w-full max-w-[320px] lg:max-w-[360px] aspect-square transition-transform duration-500 hover:scale-105`}>
+                    <Image 
+                      src="/business-deal.svg" 
+                      alt="Business Deal illustration" 
+                      fill
+                      className={`object-contain opacity-90 drop-shadow-sm dark:hidden ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
+                    />
+                    <Image 
+                      src="/business-deal_white.svg" 
+                      alt="Business Deal illustration dark" 
+                      fill
+                      className={`object-contain opacity-90 drop-shadow-sm hidden dark:block ${isAr ? 'scale-x-[-1]' : 'scale-x-[1]'}`}
+                    />
+                  </div>
+                )}
+              </div>
+
             </motion.div>
           ))}
         </div>
