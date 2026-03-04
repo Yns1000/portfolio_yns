@@ -268,28 +268,38 @@ export default function About({
               {dict.nav.projects === 'Projects' ? 'Hobbies' : dict.nav.projects === 'Projets' ? 'Loisirs' : 'الهوايات'}
             </h3>
             <div className="relative flex flex-col md:flex-row items-center md:items-start min-h-[160px] w-full">
-              <div className={`grid grid-cols-3 place-items-center gap-y-8 gap-x-2 sm:flex sm:flex-wrap sm:justify-start md:justify-between sm:items-start sm:gap-4 lg:gap-8 w-full ${isAr ? 'md:pl-[300px] lg:pl-[320px]' : 'md:pr-[300px] lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
-                {hobbies.map((hobby, index) => {
-                  const iconString = hobby.iconName?.trim() || 'Star';
-                  const Icon = ((LucideIcons as unknown) as Record<string, LucideIcons.LucideIcon>)[iconString] || LucideIcons.Star;
-                  return (
-                    <motion.div
-                      key={hobby._id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05, duration: 0.4 }}
-                      className="flex flex-col items-center justify-center gap-3 w-[76px] group relative"
-                    >
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-muted/40 text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 group-hover:-translate-y-2 transition-all duration-300 relative z-10 shrink-0">
-                        <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
-                      </div>
-                      <h4 className="font-semibold text-xs text-foreground/80 text-center line-clamp-2 leading-tight group-hover:text-foreground transition-colors overflow-visible">
-                        {getLocalizedText(hobby.title)}
-                      </h4>
-                    </motion.div>
-                  );
-                })}
+              <div className={`grid grid-cols-3 place-items-center gap-y-8 gap-x-2 sm:flex sm:flex-wrap sm:justify-center lg:flex-col lg:justify-start lg:items-start sm:gap-x-6 sm:gap-y-8 lg:gap-y-10 w-full ${isAr ? 'md:pl-[240px] lg:pl-[320px]' : 'md:pr-[240px] lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
+                {[
+                  hobbies.slice(0, Math.ceil(hobbies.length / 2)),
+                  hobbies.slice(Math.ceil(hobbies.length / 2))
+                ].map((rowHobbies, rowIndex) => (
+                  rowHobbies.length > 0 ? (
+                    <div key={rowIndex} className={`contents lg:flex lg:flex-row lg:justify-center lg:items-center lg:w-full lg:gap-x-12`}>
+                      {rowHobbies.map((hobby, i) => {
+                        const actualIndex = rowIndex === 0 ? i : i + Math.ceil(hobbies.length / 2);
+                        const iconString = hobby.iconName?.trim() || 'Star';
+                        const Icon = ((LucideIcons as unknown) as Record<string, LucideIcons.LucideIcon>)[iconString] || LucideIcons.Star;
+                        return (
+                          <motion.div
+                            key={hobby._id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: actualIndex * 0.05, duration: 0.4 }}
+                            className="flex flex-col items-center justify-start gap-3 w-[76px] sm:w-[84px] h-[100px] group relative"
+                          >
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-muted/40 text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 group-hover:-translate-y-2 transition-all duration-300 relative z-10 shrink-0">
+                              <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
+                            </div>
+                            <h4 className="font-semibold text-xs text-foreground/80 text-center line-clamp-2 leading-tight group-hover:text-foreground transition-colors overflow-visible w-full mt-auto">
+                              {getLocalizedText(hobby.title)}
+                            </h4>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  ) : null
+                ))}
               </div>
               
               <div className={`flex justify-end pr-4 -mb-8 mt-6 w-full relative z-10 md:absolute md:mb-0 md:mt-0 md:bottom-[-34px] md:pr-0 ${isAr ? 'md:left-4 lg:left-12' : 'md:right-4 lg:right-12'} pointer-events-none`}>
