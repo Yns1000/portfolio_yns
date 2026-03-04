@@ -9,14 +9,21 @@ import { type Dictionary } from "@/lib/dictionary";
 import { type SanityProject } from "@/types/sanity";
 import { urlForImage } from "@/sanity/lib/image";
 
-export default function Projects({ projects, dict }: { projects: SanityProject[], dict: Dictionary }) {
+export default function Projects({ projects, dict, lang }: { projects: SanityProject[], dict: Dictionary, lang: string }) {
   const [selectedProject, setSelectedProject] = useState<SanityProject | null>(null);
   const lenis = useLenis();
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedProject(null);
+      }
+    };
+
     if (selectedProject) {
       document.body.style.overflow = "hidden";
       if (lenis) lenis.stop();
+      window.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "unset";
       if (lenis) lenis.start();
@@ -24,12 +31,13 @@ export default function Projects({ projects, dict }: { projects: SanityProject[]
     return () => {
       document.body.style.overflow = "unset";
       if (lenis) lenis.start();
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedProject, lenis]);
 
   const getLocalizedText = (textObj: Record<string, string> | string | undefined | null) => {
     if (typeof textObj === 'object' && textObj !== null) {
-      return textObj[dict.nav.projects === 'Projects' ? 'en' : dict.nav.projects === 'Projets' ? 'fr' : 'ar'] || textObj.en || '';
+      return textObj[lang] || textObj.en || '';
     }
     return textObj || '';
   };

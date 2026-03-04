@@ -32,9 +32,9 @@ export default async function Home({
   return (
     <main>
       <Hero lang={lang} />
-      <About education={education} skills={skills} associations={associations} hobbies={hobbies} settings={settings} dict={dict} />
-      <Experience experiences={experiences} dict={dict} />
-      <Projects projects={projects} dict={dict} />
+      <About education={education} skills={skills} associations={associations} hobbies={hobbies} settings={settings} dict={dict} lang={lang} />
+      <Experience experiences={experiences} dict={dict} lang={lang} />
+      <Projects projects={projects} dict={dict} lang={lang} />
       <Contact dict={dict} />
     </main>
   );

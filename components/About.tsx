@@ -23,22 +23,24 @@ export default function About({
   associations, 
   hobbies,
   settings,
-  dict 
+  dict,
+  lang
 }: { 
   education: SanityEducation[], 
   skills: SanitySkill[], 
   associations: SanityAssociation[], 
   hobbies: SanityHobby[],
   settings?: SanitySettings,
-  dict: Dictionary 
+  dict: Dictionary,
+  lang: string
 }) {
   const mainAssoc = associations?.[0];
   const languages = skills?.filter(s => s.category === 'language') || [];
-  const isAr = dict.nav.projects !== 'Projects' && dict.nav.projects !== 'Projets';
+  const isAr = lang === 'ar';
   
   function getLocalizedText(textObj: Record<string, string> | string | undefined | null) {
     if (typeof textObj === 'object' && textObj !== null) {
-      return textObj[dict.nav.projects === 'Projects' ? 'en' : dict.nav.projects === 'Projets' ? 'fr' : 'ar'] || textObj.en || '';
+      return textObj[lang] || textObj.en || '';
     }
     return textObj || '';
   }

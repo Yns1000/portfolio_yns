@@ -6,13 +6,13 @@ import { type Dictionary } from "@/lib/dictionary";
 import { type SanityExperience } from "@/types/sanity";
 import { urlForImage } from "@/sanity/lib/image";
 
-export default function Experience({ experiences, dict }: { experiences: SanityExperience[], dict: Dictionary }) {
+export default function Experience({ experiences, dict, lang }: { experiences: SanityExperience[], dict: Dictionary, lang: string }) {
 
-  const isAr = dict.nav.projects !== 'Projects' && dict.nav.projects !== 'Projets';
+  const isAr = lang === 'ar';
 
   const getLocalizedText = (textObj: Record<string, string> | string | undefined | null) => {
     if (typeof textObj === 'object' && textObj !== null) {
-      return textObj[isAr ? 'ar' : dict.nav.projects === 'Projets' ? 'fr' : 'en'] || textObj.en || '';
+      return textObj[lang] || textObj.en || '';
     }
     return textObj || '';
   };
