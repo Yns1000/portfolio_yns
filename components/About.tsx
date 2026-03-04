@@ -267,8 +267,8 @@ export default function About({
               <Gamepad2 className="text-primary" size={26} />
               {dict.nav.projects === 'Projects' ? 'Hobbies' : dict.nav.projects === 'Projets' ? 'Loisirs' : 'الهوايات'}
             </h3>
-            <div className="relative flex flex-col items-start min-h-[160px] w-full">
-              <div className={`grid grid-cols-3 place-items-center gap-y-8 gap-x-2 sm:flex sm:flex-wrap sm:justify-start lg:justify-between sm:items-start sm:gap-4 lg:gap-8 w-full ${isAr ? 'lg:pl-[320px]' : 'lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
+            <div className="relative flex flex-col md:flex-row items-center md:items-start min-h-[160px] w-full">
+              <div className={`grid grid-cols-3 place-items-center gap-y-8 gap-x-2 sm:flex sm:flex-wrap sm:justify-start md:justify-between sm:items-start sm:gap-4 lg:gap-8 w-full ${isAr ? 'md:pl-[300px] lg:pl-[320px]' : 'md:pr-[300px] lg:pr-[320px]'} pb-4 pt-4 px-2 z-20`}>
                 {hobbies.map((hobby, index) => {
                   const iconString = hobby.iconName?.trim() || 'Star';
                   const Icon = ((LucideIcons as unknown) as Record<string, LucideIcons.LucideIcon>)[iconString] || LucideIcons.Star;
@@ -292,20 +292,20 @@ export default function About({
                 })}
               </div>
               
-              <div className={`hidden md:block absolute bottom-[-34px] ${isAr ? 'left-4 lg:left-12' : 'right-4 lg:right-12'} z-10 pointer-events-none`}>
+              <div className={`flex justify-end pr-4 -mb-8 mt-6 w-full relative z-10 md:absolute md:mb-0 md:mt-0 md:bottom-[-34px] md:pr-0 ${isAr ? 'md:left-4 lg:left-12' : 'md:right-4 lg:right-12'} pointer-events-none`}>
                 <Image 
                   src="/jogging.svg" 
                   alt="Jogging illustration" 
                   width={280} 
                   height={280} 
-                  className={`opacity-90 drop-shadow-lg dark:hidden ${isAr ? 'scale-x-[-1]' : ''}`}
+                  className={`opacity-90 drop-shadow-lg dark:hidden w-48 h-48 md:w-[280px] md:h-[280px] ${isAr ? 'scale-x-[-1]' : ''}`}
                 />
                 <Image 
                   src="/jogging_white.svg" 
                   alt="Jogging illustration dark" 
                   width={280} 
                   height={280} 
-                  className={`opacity-90 drop-shadow-lg hidden dark:block ${isAr ? 'scale-x-[-1]' : ''}`}
+                  className={`opacity-90 drop-shadow-lg hidden dark:block w-48 h-48 md:w-[280px] md:h-[280px] ${isAr ? 'scale-x-[-1]' : ''}`}
                 />
               </div>
             </div>

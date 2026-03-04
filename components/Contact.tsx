@@ -40,7 +40,6 @@ export default function Contact({ dict }: { dict: Dictionary }) {
     <section id="contact" className="pt-10 pb-20 relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Title Section (Matching Experience/Projects Layout) */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,10 +55,8 @@ export default function Contact({ dict }: { dict: Dictionary }) {
           </p>
         </motion.div>
 
-        {/* Content Section */}
         <div className="flex flex-col-reverse lg:flex-row gap-16 lg:gap-24 items-center">
           
-          {/* Form Side */}
           <motion.form 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +142,6 @@ export default function Contact({ dict }: { dict: Dictionary }) {
             </button>
           </motion.form>
 
-          {/* Megaphone Illustration Side (Right) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
