@@ -37,6 +37,9 @@ export default async function Footer({ dict }: { dict: Dictionary }) {
               GitHub
             </a>
           )}
+          <a href="https://github.com/Yns1000/portfolio_yns/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+            Source Code
+          </a>
         </div>
       </div>
     </footer>
