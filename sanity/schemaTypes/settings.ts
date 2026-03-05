@@ -41,5 +41,12 @@ export default defineType({
       type: 'string',
       description: 'Link to your English CV (e.g. /cv-en.pdf). Leave empty to hide the button.',
     }),
+    defineField({
+      name: 'activePalette',
+      title: 'Active Color Palette',
+      type: 'reference',
+      to: [{ type: 'palette' }],
+      description: 'Select the color palette to apply globally to the website.',
+    }),
   ],
 })

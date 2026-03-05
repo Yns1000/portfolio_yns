@@ -6,6 +6,10 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { i18n, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
+import { client } from "@/sanity/lib/client";
+import { settingsQuery } from "@/sanity/lib/queries";
+import { type SanitySettings } from "@/types/sanity";
+import DynamicTheme from "@/components/DynamicTheme";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -93,10 +97,12 @@ export default async function RootLayout({
   const fontClass = `${baseFonts}`;
   
   const dict = await getDictionary(lang);
+  const settings = await client.fetch<SanitySettings | null>(settingsQuery);
 
   return (
     <html lang={lang} dir={dir} className={fontClass} suppressHydrationWarning>
       <body className="font-sans antialiased bg-background text-foreground transition-colors duration-300">
+        <DynamicTheme palette={settings?.activePalette} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

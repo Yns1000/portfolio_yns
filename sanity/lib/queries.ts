@@ -81,6 +81,26 @@ export const settingsQuery = groq`
     linkedinUrl,
     contactEmail,
     cvFrUrl,
-    cvEnUrl
+    cvEnUrl,
+    activePalette->{
+      _id,
+      title,
+      light_background,
+      light_foreground,
+      light_primary,
+      light_primary_foreground,
+      light_muted,
+      light_muted_foreground,
+      light_border,
+      light_card,
+      dark_background,
+      dark_foreground,
+      dark_primary,
+      dark_primary_foreground,
+      dark_muted,
+      dark_muted_foreground,
+      dark_border,
+      dark_card
+    }
   }
 `

@@ -63,6 +63,33 @@ export interface SanityHobby {
   colSpan: number;
   order?: number;
 }
+
+export interface SanityColor {
+  hex: string;
+}
+
+export interface SanityPalette {
+  _id: string;
+  title: string;
+  light_background?: SanityColor;
+  light_foreground?: SanityColor;
+  light_primary?: SanityColor;
+  light_primary_foreground?: SanityColor;
+  light_muted?: SanityColor;
+  light_muted_foreground?: SanityColor;
+  light_border?: SanityColor;
+  light_card?: SanityColor;
+  
+  dark_background?: SanityColor;
+  dark_foreground?: SanityColor;
+  dark_primary?: SanityColor;
+  dark_primary_foreground?: SanityColor;
+  dark_muted?: SanityColor;
+  dark_muted_foreground?: SanityColor;
+  dark_border?: SanityColor;
+  dark_card?: SanityColor;
+}
+
 export interface SanitySettings {
   _id: string;
   title?: string;
@@ -71,4 +98,5 @@ export interface SanitySettings {
   contactEmail?: string;
   cvFrUrl?: string;
   cvEnUrl?: string;
+  activePalette?: SanityPalette;
 }
