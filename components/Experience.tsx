@@ -71,7 +71,7 @@ export default function Experience({ experiences, dict, lang }: { experiences: S
               <div className="w-[calc(100%-2.5rem)] md:w-[calc(50%-3rem)] bg-card p-8 rounded-2xl border border-border/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40 relative z-20">
                 <div className="mb-4 relative z-10 flex flex-col items-start gap-4">
                   <span className="text-[10px] md:text-sm whitespace-nowrap font-mono text-muted-foreground bg-secondary/70 px-2.5 py-1 md:px-3 md:py-1 rounded-full shrink-0">
-                    {formatDate(exp.startDate)} - {exp.isCurrent ? (dict.nav.projects === 'Projets' ? "Présent" : dict.nav.projects === 'Projects' ? "Present" : "حاضر") : formatDate(exp.endDate || "")}
+                    {formatDate(exp.startDate)} - {exp.isCurrent ? (dict.nav.projects === 'Projets' ? "Aujourd'hui" : dict.nav.projects === 'Projects' ? "Present" : "حاضر") : formatDate(exp.endDate || "")}
                   </span>
                   <div className="flex items-start gap-3 w-full">
                     {exp.logo && (

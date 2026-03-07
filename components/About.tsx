@@ -132,18 +132,20 @@ export default function About({
               {dict.nav.projects === 'Projects' ? 'Education' : dict.nav.projects === 'Projets' ? 'Formation' : 'تعليم'}
             </h3>
             
-            <div className="relative flex-1 flex flex-col justify-between pl-8 border-l-2 border-primary/20 ml-2 mt-6 space-y-6 pt-2">
-              <LucideIcons.ArrowUp size={28} className="absolute -top-4 -left-[15px] text-primary/40 z-0 bg-background pb-2 h-7 box-content" />
+            <div className="relative flex-1 flex flex-col justify-between pl-8 border-l-2 border-primary/20 ml-[13px] mt-6 space-y-6 pt-2">
+              <LucideIcons.ArrowUp size={24} className="absolute -top-5 -left-[13px] text-primary/20 z-0" strokeWidth={2.5} />
               {education?.map((edu, index) => (
                 <div key={edu._id} className="relative z-10 group min-h-[250px] mb-16 last:mb-0">
-                  <div className="absolute -left-[41px] mt-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background z-20" />
                   <div className="flex flex-col md:flex-row md:items-start justify-between mb-2 gap-2 relative z-20">
                     <h4 className="text-xl font-bold text-foreground leading-tight sm:pr-[220px] md:pr-[250px]">{getLocalizedText(edu.degree)}</h4>
                     <span className="text-xs font-mono text-muted-foreground bg-secondary/70 px-3 py-1 rounded-full w-fit shrink-0 relative z-30 md:absolute md:-top-1 md:right-4">
-                      {formatDate(edu.startDate)} - {edu.isCurrent ? (dict.nav.projects === 'Projets' ? 'Présent' : dict.nav.projects === 'Projects' ? 'Present' : 'حاضر') : formatDate(edu.endDate || "")}
+                      {formatDate(edu.startDate)} - {edu.isCurrent ? (dict.nav.projects === 'Projets' ? "Aujourd'hui" : dict.nav.projects === 'Projects' ? 'Present' : 'حاضر') : formatDate(edu.endDate || "")}
                     </span>
                   </div>
-                  <div className="font-medium text-primary mb-3 text-md relative z-20 sm:pr-[220px] md:pr-[250px]">{edu.school}{edu.location ? `, ${edu.location}` : ''}</div>
+                  <div className="font-medium text-primary mb-3 text-md relative z-20 sm:pr-[220px] md:pr-[250px]">
+                    <div className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-card z-20" />
+                    {edu.school}{edu.location ? `, ${edu.location}` : ''}
+                  </div>
                   <div className="text-sm relative z-20 sm:pr-[220px] md:pr-[250px] mt-6 pb-4">
                     {renderDescription(getLocalizedText(edu.description))}
                   </div>
